@@ -16,7 +16,7 @@ describe Tag do
     let(:post) { Post.create(user: user, name: 'post', content: 'content') }
 
     before do
-      PostTag.create(tag: tag, post: post)
+      PostTag.create(tag_id: tag.id, post_id: post.id)
     end
 
     it 'has many posts' do
