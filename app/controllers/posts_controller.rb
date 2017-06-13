@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_tags, only: [:show, :edit]
 
   # GET /posts
   # GET /posts.json
@@ -67,8 +68,11 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
 
+    def set_tags
+      @tags = Tag.all
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:name)
+      params.require(:post).permit(:name, :content, tag_ids: [])
     end
 end
