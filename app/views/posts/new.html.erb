@@ -1,5 +1,25 @@
 <h1>New post</h1>
 
-<%= render 'form' %>
+<% if @post.errors.any? %>
 
-<%= link_to 'Back', posts_path %>
+  <h3 style = "color:red;"><%= pluralize(@post.errors.count, 'error') %></h3>
+  <ul>
+  <% @post.errors.full_messages.each do |m| %>
+    <li style = "color:red;"><%= m %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<%= form_for(@post) do |f|%>
+  <%=f.label :name, "Post title:" %>
+  <%=f.text_field :name, :id => "Name" %><br><br>
+  <%=f.label :content %>
+  <%=f.text_area :content %><br><br>
+  <%=f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |b| %>
+    <%= b.label do %>
+    <%= b.check_box(id: b.text) + b.text%>
+    <% end %>
+    <br>
+  <%end %><br> <br>
+  <%=f.submit %>
+<% end %>
