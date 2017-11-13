@@ -62,7 +62,7 @@ end
 --> rake db:seed
 
 
-[ ]Make the model association tests pass.
+[ x]Make the model association tests pass.
 
 
 ***Validations***
