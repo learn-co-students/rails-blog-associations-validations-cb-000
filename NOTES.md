@@ -1,15 +1,15 @@
 [ x] Change the migration for posts to include content (set content's datatype to text to account for character length).
 --> rails migration
 
-[ ] Create a migration, model and controller for User and Tag (via rails generate). Check out the documentation on generators, and remember to skip adding tests.
+[ x] Create a migration, model and controller for User and Tag (via rails generate). Check out the documentation on generators, and remember to skip adding tests.
 -->
 rails g resource User name:string --no-test-framework
 rails g resource Tag name:string --no-test-framework
 
 > rails generate scaffold Apartment address:string price:float description:text image_url:string --no-test-framework
 
-[ ] In order to create the appropriate associations between Post and Tag, we need to create a join table as well.
-[ ] Build out model associations and migrations.
+[ x] In order to create the appropriate associations between Post and Tag, we need to create a join table as well.
+[ x] Build out model associations and migrations.
 
 --> rails g model PostTag tag_id:integer post_id:integer
 
@@ -54,9 +54,9 @@ end
 
 [ ] Be sure to create the appropriate routes. For now, they can be written as resources.
 --> resources :posts :tags ?
+(maybe, haven't tested)
 
-
-[ ] create the database, migrate the schema, and seed it.
+[x ] create the database, migrate the schema, and seed it.
 --> rake db:create?
 --> rake db:migrate
 --> rake db:seed
