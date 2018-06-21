@@ -1,15 +1,15 @@
 describe Post do
   context 'Post validations' do
     it "post is valid" do
-      expect(Post.create(name: "hi", content: "hello")).to be_valid
+      expect(Post.create(post_name: "hi", post_content: "hello")).to be_valid
     end
 
     it "is invalid with no name" do
-      expect(Post.create(name: nil, content: "i have no name")).to_not be_valid
+      expect(Post.create(post_name: nil, post_content: "i have no name")).to_not be_valid
     end
 
     it "is invalid with no content" do
-      expect(Post.create(name: "Name", content: nil)).to_not be_valid
+      expect(Post.create(post_name: "Name", post_content: nil)).to_not be_valid
     end
   end
 
@@ -17,7 +17,7 @@ describe Post do
     let(:user) { User.create(name: 'Crookshanks') }
     let(:tag1) { Tag.create(name: 'adorable') }
     let(:tag2) { Tag.create(name: 'feline') }
-    let(:post) { Post.create(user_id: user.id, name: 'post', content: 'content') }
+    let(:post) { Post.create(user_id: user.id, post_name: 'post', post_content: 'content') }
 
     before do
       PostTag.create(tag_id: tag1.id, post_id: post.id)
