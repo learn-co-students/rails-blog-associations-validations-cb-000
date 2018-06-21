@@ -12,10 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %><br>
+    <div class="name"><%= f.label :post_name, "Post Name" %></div><br>
+    <%= f.text_field :post_name %><br>
   </div>
-
+  
+  <div class="field">
+    <%= f.label :post_content, "Post Content" %><br>
+    <%= f.text_field :post_content %><br>
+  </div>
+  
+  <div class="field">
+    <%= f.label :tags %><br>
+    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
+  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

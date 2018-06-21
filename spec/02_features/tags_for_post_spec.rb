@@ -4,8 +4,10 @@ describe 'tags for posts', :type => :feature do
 
   it 'can create a post without adding tags' do
     visit '/posts/new'
-    fill_in('Name', :with => 'Post title')
-    fill_in('Content', :with => 'post content')
+    element = page.find("Post Name")
+    element.set(@post[:post_name])
+    element = page.find("Post Content")
+    element.set(@post[:post_content])
     click_button('Create Post')
     expect(page).to have_content("Post title")
   end
@@ -13,8 +15,10 @@ describe 'tags for posts', :type => :feature do
   it 'can create a post with adding one tag' do
     puts cute.inspect
     visit '/posts/new'
-    fill_in('Name', :with => 'Post title')
-    fill_in('Content', :with => 'post content')
+    element = page.find("Post Name")
+    element.set(@post[:post_name])
+    element = page.find("Post Content")
+    element.set(@post[:post_content])
     check('cute')
     click_button('Create Post')
     expect(page).to have_content("Post title")
@@ -23,8 +27,10 @@ describe 'tags for posts', :type => :feature do
 
   it 'can create a post with adding multiple tags' do
     visit '/posts/new'
-    fill_in('Name', :with => 'Post title')
-    fill_in('Content', :with => 'post content')
+    element = page.find("Post Name")
+    element.set(@post[:post_name])
+    element = page.find("Post Content")
+    element.set(@post[:post_content])
     check('cute')
     check('adorable')
     click_button('Create Post')
