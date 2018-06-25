@@ -10,8 +10,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show 
-    @tag = Tag.find(@post.tag_id)
-    
+    @tags = Tag.all
   end
 
   # GET /posts/new
@@ -73,6 +72,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:post_name, :post_content)
+      params.require(:post).permit(:post_name, :post_content, :tag => [:name])
     end
 end
