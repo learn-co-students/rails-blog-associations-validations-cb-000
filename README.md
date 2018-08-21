@@ -21,6 +21,17 @@ This is the second lab iteration off of [Rails Blog Scaffold](https://github.com
 6. `create` the database, `migrate` the schema, and `seed` it.
 7. Make the model association tests pass.
 
+rails g resource User name:string --no-test-framework
+rails g resource Tag name:string --no-test-framework
+rails generate migration add_user_id_to_posts user_id:integer
+rails g model PostTag post_id:integer tag_id:integer --no-test-framework
+
+rails d model PostsTag
+
+rails g migration add_content_to_posts content:text
+
+
+
 ## Validations
 
 Active Record has handy methods you can place on columns in a table to validate certain attributes, like `presence`, `length`, and `uniqueness`. These are called in a model. Check out the [documentation](http://guides.rubyonrails.org/active_record_validations.html) to see more.
@@ -51,9 +62,9 @@ Active Record handles errors when validations aren't met via user input on our f
 1. Build out the forms for creating a new post.
 
   ## Adding tags to a post
-  
+
   You've got a great post on kittens that was generated via the seed file, but you want to be able to add some tags. Create a form on the posts form page that lists all the tags as checkboxes, allowing a user to select multiple tags.
-  
+
   Check out the documentation for the `collection_check_boxes` form helper [here](http://edgeapi.rubyonrails.org/classes/ActionView/Helpers/FormBuilder.html#method-i-collection_check_boxes) and this post on strong params to be able to make the association between Post and Tag via the Post_Tag join model [here](http://stackoverflow.com/questions/16549382/how-to-permit-an-array-with-strong-parameters).
 
 2. Make the tests in `features/tags_for_posts_spec.rb` pass.
