@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_tags, only: [:new, :edit]
 
   # GET /posts
   # GET /posts.json
@@ -41,7 +42,14 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     respond_to do |format|
-      if @post.update(post_params)
+      tags = []
+      if post_params.has_key?(:tag_ids)
+        tags = post_params[:tag_ids].collect do |tag_id|
+          Tag.find_by(id: tag_id)
+        end.compact
+      end
+
+      if @post.update(post_params.merge(tags: tags))
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { head :no_content }
       else
@@ -67,8 +75,12 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
 
+    def set_tags
+      @tags = Tag.all
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:name)
+      params.require(:post).permit(:name, :content, tag_ids: [])
     end
 end
