@@ -1,3 +1,4 @@
+
 describe Tag do
   context 'Tag validations' do
     it "tag is valid" do
