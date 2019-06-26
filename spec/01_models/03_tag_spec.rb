@@ -13,10 +13,10 @@ describe Tag do
   context 'Tag relationship to Post' do
     let(:tag) { Tag.create(name: 'cute') }
     let(:user) { User.create(name: 'kitten') }
-    let(:post) { Post.create(user: user, name: 'post', content: 'content') }
+    let(:post) { Post.create(user_id: user.id, name: 'post', content: 'content') }
 
     before do
-      PostTag.create(tag: tag, post: post)
+      PostTag.create(tag_id: tag.id, post_id: post.id)
     end
 
     it 'has many posts' do
