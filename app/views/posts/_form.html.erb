@@ -14,17 +14,13 @@
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %><br>
-  </div>
 
-  <div class="field">
     <%= f.label :content %><br>
     <%= f.text_area :content %><br>
   </div>
   
   <div class="field">
-    <% Tag.all.each do |tag| %>
-      <%= check_box :tags, tag.name %><br>
-    <% end %>
+    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
   </div>
 
   <div class="actions">
